@@ -34,8 +34,6 @@ const Navbar = () => {
 
   return (
     <CardNav
-      logo="/next.svg"
-      logoAlt="Company Logo"
       items={items}
       baseColor="#fff"
       menuColor="#000"
