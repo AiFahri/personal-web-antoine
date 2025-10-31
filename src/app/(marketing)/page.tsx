@@ -1,6 +1,7 @@
 import Hero from '@/components/sections/Hero';
 import { HighlightA, HighlightB } from '@/components/sections/Highlights';
 import { highlightAData, highlightBData } from '@/data/highlights';
+import StayConnected from '@/components/sections/StayConnected';
 
 export default function MarketingPage() {
   return (
@@ -22,11 +23,9 @@ export default function MarketingPage() {
         backgroundText="ANTOINE BATTLE"
       />
       
-      {/* Section 2 - Inspiring Global Action */}
       <HighlightA {...highlightAData} />
-      
-      {/* Section 3 - Transform Ideas Into Strategy */}
       <HighlightB {...highlightBData} />
+      <StayConnected />
     </>
   );
 }
