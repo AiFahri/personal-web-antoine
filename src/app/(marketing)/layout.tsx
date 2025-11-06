@@ -1,4 +1,3 @@
-// app/(marketing)/layout.tsx
 import Navbar from "@/components/layout/Navbar";
 
 
