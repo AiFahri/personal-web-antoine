@@ -4,7 +4,6 @@ import { motion } from 'motion/react';
 import Image from 'next/image';
 import Button from '../ui/Button';
 
-// Section 2 - Inspiring Global Action
 export type HighlightAProps = {
   title: string;
   leftImage: string;
@@ -43,8 +42,8 @@ export function HighlightA({
   };
 
   return (
-    <section className="py-14 md:py-20">
-      <div className="container mx-auto px-4 md:px-6 lg:px-8">
+    <section className="">
+      <div className="">
         <motion.div 
           className="bg-white rounded-3xl shadow-[0_8px_30px_rgba(0,0,0,0.06)] border border-black/5 overflow-hidden px-6 md:px-10 py-8 md:py-12"
           initial={{ opacity: 0, y: 30 }}
@@ -54,7 +53,6 @@ export function HighlightA({
         >
           <div className="grid grid-cols-12 gap-x-8 lg:gap-x-10">
             
-            {/* Left - ImageCard A */}
             <div className="col-span-12 md:col-span-2 lg:col-span-3 order-4 md:order-1">
               <motion.div
                 className="relative"
@@ -74,7 +72,6 @@ export function HighlightA({
               </motion.div>
             </div>
 
-            {/* Middle - Heading + Paragraphs + CTA */}
             <div className="col-span-12 md:col-span-4 lg:col-span-6 order-1 md:order-2">
               <motion.div
                 initial={{ opacity: 0, y: 30 }}
@@ -82,11 +79,11 @@ export function HighlightA({
                 transition={{ duration: 0.8 }}
                 viewport={{ once: true }}
               >
-                <h2 className="font-bold text-3xl md:text-4xl lg:text-5xl tracking-tight text-gray-900 mb-6 md:mb-8 font-[SpaceGroteskBold]" style={{ maxWidth: '20ch' }}>
+                <h2 className="font-bold text-3xl md:text-4xl lg:text-6xl tracking-tight text-gray-900 mb-6 md:mb-8 font-[SpaceGroteskBold]" style={{ maxWidth: '20ch' }}>
                   {title}
                 </h2>
 
-                <div className="grid md:grid-cols-2 gap-x-8 gap-y-4 mb-6">
+                <div className="grid md:grid-cols-2 gap-x-8 gap-y-4 mb-6 font-[SpaceGroteskLight] text-black lg:text-3xl">
                   {paragraphs.map((paragraph, index) => (
                     <motion.p
                       key={index}
@@ -122,7 +119,6 @@ export function HighlightA({
               </motion.div>
             </div>
 
-            {/* Right - MiniCarousel */}
             <div className="col-span-12 md:col-span-2 lg:col-span-3 order-5 md:order-3">
               <motion.div
                 className="relative"
@@ -147,7 +143,6 @@ export function HighlightA({
                     style={{ aspectRatio: '1/1' }}
                   />
                   
-                  {/* Dots */}
                   <div className="absolute bottom-2 right-2 flex gap-1">
                     {carousel.map((_, index) => (
                       <button
@@ -173,7 +168,6 @@ export function HighlightA({
   );
 }
 
-// Section 3 - Transform Ideas Into Strategy
 export type HighlightBProps = {
   title: string;
   lead: string;
@@ -193,10 +187,9 @@ export function HighlightB({
   cta
 }: HighlightBProps) {
   return (
-    <section className="bg-stone-50 py-14 md:py-20">
+    <section className="bg-[#F7F6F2] py-14 md:py-20">
       <div className="container mx-auto px-4 md:px-6 lg:px-8">
         
-        {/* Row 1 - Headline + Image B */}
         <div className="grid grid-cols-12 gap-x-10 mb-8">
           <motion.div
             className="col-span-12 lg:col-span-7"
@@ -205,12 +198,12 @@ export function HighlightB({
             transition={{ duration: 0.8 }}
             viewport={{ once: true }}
           >
-            <h2 className="font-bold text-4xl md:text-5xl tracking-tight text-gray-900 mb-6 md:mb-8 font-[SpaceGroteskBold]" style={{ maxWidth: '18ch' }}>
+            <h2 className="font-bold text-4xl md:text-6xl tracking-tight text-gray-900 mb-6 md:mb-8 font-[SpaceGroteskBold]" style={{ maxWidth: '18ch' }}>
               {title}
             </h2>
             
             <motion.p
-              className="text-gray-900 mb-8"
+              className="text-gray-900 mb-8 text-3xl font-[SpaceGroteskLight]"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.2 }}
@@ -241,7 +234,6 @@ export function HighlightB({
           </motion.div>
         </div>
 
-        {/* Row 2 - Bottom Grid */}
         <div className="grid grid-cols-12 gap-x-10 gap-y-8">
           
           <div className="col-span-12 lg:col-span-6">
@@ -265,7 +257,7 @@ export function HighlightB({
               
               <div className="flex-1">
                 <motion.p
-                  className="text-gray-900 mb-6"
+                  className="text-gray-900 mb-6 font-[SpaceGroteskLight] text-lg"
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.6, delay: 0.4 }}
@@ -295,10 +287,9 @@ export function HighlightB({
             </div>
           </div>
 
-          {/* Right Bottom Block */}
-          <div className="col-span-12 lg:col-span-6">
+          <div className="col-span-12 lg:col-span-6 ">
             <motion.p
-              className="text-gray-900"
+              className="text-gray-900 font-[SpaceGroteskLight] text-lg"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.6 }}
