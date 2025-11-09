@@ -30,13 +30,10 @@ export const postBySlugQuery = `
 
 export const latestReelsQuery = `
 *[_type == "reel"] | order(publishedAt desc)[0...24]{
-  title,
-  "fileUrl": file.asset->url,
-  "thumbnailUrl": thumbnail.asset->url,
-  posterSecond,
-  link,
-  description,
-  publishedAt
+  _id, title, kind, posterSecond,
+  "videoUrl": select(kind=="video" => file.asset->url),
+  "videoMime": select(kind=="video" => file.asset->mimetype),
+  "thumbUrl": select(kind=="video" => thumbnail.asset->url),
+  "imageUrl": select(kind=="image" => image.asset->url),
 }
 `;
-
