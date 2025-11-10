@@ -37,7 +37,7 @@ export default async function StayConnected({
 
   return (
     <section className="py-16 bg-white">
-      <div className="container mx-auto px-4 md:px-6 lg:px-8">
+      <div className="container mx-auto px-4 md:px-6 lg:px-0">
         <div className="flex flex-col md:flex-row md:items-center md:justify-between pb-6">
           <h2 className="font-bold text-3xl md:text-5xl tracking-tight mb-4 text-black md:mb-0 font-[SpaceGroteskBold]">
             {title}
