@@ -1,4 +1,4 @@
-  import { post } from './post';
-  import { reel } from './reel';
-  export const schemaTypes = [post, reel];
-  
+import { post } from "./post";
+import { videoItem } from "./videoItem";
+import { photoItem } from "./photoItem";
+export const schemaTypes = [post, videoItem, photoItem];
