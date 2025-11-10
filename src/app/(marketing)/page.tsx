@@ -2,7 +2,8 @@ import Hero from "@/components/sections/Hero";
 import { HighlightA, HighlightB } from "@/components/sections/Highlights";
 import { highlightAData, highlightBData } from "@/data/highlights";
 import StayConnected from "@/components/sections/StayConnected";
-import Gallery from "@/components/sections/Gallery";
+import GalleryVideos from "@/components/sections/GalleryVideos";
+import GalleryPhotos from "@/components/sections/GalleryPhotos";
 
 export default function MarketingPage() {
   return (
@@ -28,7 +29,8 @@ export default function MarketingPage() {
       <HighlightA {...highlightAData} />
       <HighlightB {...highlightBData} />
       <StayConnected />
-      <Gallery />
+      <GalleryVideos />
+      <GalleryPhotos />
     </>
   );
 }
