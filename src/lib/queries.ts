@@ -28,12 +28,17 @@ export const postBySlugQuery = `
 }
 `;
 
-export const latestReelsQuery = `
-*[_type == "reel"] | order(publishedAt desc)[0...24]{
-  _id, title, kind, posterSecond,
-  "videoUrl": select(kind=="video" => file.asset->url),
-  "videoMime": select(kind=="video" => file.asset->mimetype),
-  "thumbUrl": select(kind=="video" => thumbnail.asset->url),
-  "imageUrl": select(kind=="image" => image.asset->url),
+export const latestVideosQuery = `
+*[_type == "videoItem"] | order(publishedAt desc)[0...24]{
+  _id, title, posterSecond,
+  "videoUrl": video.asset->url,
+  "videoMime": video.asset->mimetype,
+  "thumbUrl": thumbnail.asset->url
+}
+`;
+
+export const latestPhotosQuery = `
+*[_type == "photoItem"] | order(publishedAt desc)[0...24]{
+  _id, title, "imageUrl": image.asset->url
 }
 `;
