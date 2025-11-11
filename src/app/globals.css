@@ -49,6 +49,22 @@ body {
   font-family: 'SpaceGroteskMedium';
   src: url('/fonts/SpaceGrotesk-Medium.ttf') format('truetype');
 }
+@font-face {
+  font-family: 'SatoshiRegular';
+  src: url('/fonts/Satoshi-Regular.otf') format('opentype');
+}
+@font-face {
+  font-family: 'SatoshiMedium';
+  src: url('/fonts/Satoshi-Medium.otf') format('opentype');
+}
+@font-face {
+  font-family: 'SatoshiBold';
+  src: url('/fonts/Satoshi-Bold.otf') format('opentype');
+}
+@font-face {
+  font-family: 'SatoshiBlack';
+  src: url('/fonts/Satoshi-Black.otf') format('opentype');
+}
 
 /* === FONT CLASSES === */
 .font_grotesk_medium {
@@ -67,4 +83,16 @@ body {
 }
 .font_grotesk_medium {
   font-family: SpaceGroteskMedium;
+}
+.font_satoshi_regular {
+  font-family: SatoshiRegular;
+}
+.font_satoshi_medium {
+  font-family: SatoshiMedium;
+}
+.font_satoshi_bold {
+  font-family: SatoshiBold;
+}
+.font_satoshi_black {
+  font-family: SatoshiBlack;
 }
