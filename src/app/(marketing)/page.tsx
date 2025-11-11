@@ -5,6 +5,8 @@ import StayConnected from "@/components/sections/StayConnected";
 import GlobalImpact from "@/components/sections/GlobalImpact";
 import GalleryVideos from "@/components/sections/GalleryVideos";
 import GalleryPhotos from "@/components/sections/GalleryPhotos";
+import FeaturedServices from "@/components/sections/FeaturedServices";
+import Testimonials from "@/components/sections/Testimonials";
 
 export default function MarketingPage() {
   return (
@@ -33,6 +35,8 @@ export default function MarketingPage() {
       <GlobalImpact />
       <GalleryVideos />
       <GalleryPhotos />
+      <FeaturedServices autoplay={true} intervalMs={5500} />
+      <Testimonials autoplay={true} intervalMs={4500} />
     </>
   );
 }
