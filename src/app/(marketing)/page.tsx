@@ -2,6 +2,7 @@ import Hero from "@/components/sections/Hero";
 import { HighlightA, HighlightB } from "@/components/sections/Highlights";
 import { highlightAData, highlightBData } from "@/data/highlights";
 import StayConnected from "@/components/sections/StayConnected";
+import GlobalImpact from "@/components/sections/GlobalImpact";
 import GalleryVideos from "@/components/sections/GalleryVideos";
 import GalleryPhotos from "@/components/sections/GalleryPhotos";
 
@@ -29,6 +30,7 @@ export default function MarketingPage() {
       <HighlightA {...highlightAData} />
       <HighlightB {...highlightBData} />
       <StayConnected />
+      <GlobalImpact />
       <GalleryVideos />
       <GalleryPhotos />
     </>
