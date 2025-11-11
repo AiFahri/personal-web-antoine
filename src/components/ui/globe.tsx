@@ -57,7 +57,6 @@ export type GlobeConfig = {
   autoRotateSpeed?: number;
 };
 
-
 interface WorldProps {
   globeConfig: GlobeConfig;
   data: Position[];
@@ -153,9 +152,9 @@ export function Globe({ globeConfig, data }: WorldProps) {
       (v, i, a) =>
         a.findIndex((v2) =>
           ["lat", "lng"].every(
-            (k) => v2[k as "lat" | "lng"] === v[k as "lat" | "lng"],
-          ),
-        ) === i,
+            (k) => v2[k as "lat" | "lng"] === v[k as "lat" | "lng"]
+          )
+        ) === i
     );
 
     globeRef.current
@@ -185,8 +184,8 @@ export function Globe({ globeConfig, data }: WorldProps) {
       .pointsData(filteredPoints)
       .pointColor((e) => (e as { color: string }).color)
       .pointsMerge(true)
-      .pointAltitude(0.0)
-      .pointRadius(2);
+      .pointAltitude(0.01)
+      .pointRadius(3);
 
     globeRef.current
       .ringsData([])
@@ -194,7 +193,7 @@ export function Globe({ globeConfig, data }: WorldProps) {
       .ringMaxRadius(defaultProps.maxRings)
       .ringPropagationSpeed(RING_PROPAGATION_SPEED)
       .ringRepeatPeriod(
-        (defaultProps.arcTime * defaultProps.arcLength) / defaultProps.rings,
+        (defaultProps.arcTime * defaultProps.arcLength) / defaultProps.rings
       );
   }, [
     isInitialized,
@@ -220,7 +219,7 @@ export function Globe({ globeConfig, data }: WorldProps) {
       const newNumbersOfRings = genRandomNumbers(
         0,
         data.length,
-        Math.floor((data.length * 4) / 5),
+        Math.floor((data.length * 4) / 5)
       );
 
       const ringsData = data
@@ -258,18 +257,18 @@ export function World(props: WorldProps) {
   const { globeConfig } = props;
   const scene = new Scene();
   scene.fog = new Fog(0xffffff, 400, 2000);
-  
+
   // Default values untuk mencegah undefined errors
   const defaultGlobeConfig = {
     ambientLight: "#38bdf8",
-    directionalLeftLight: "#ffffff", 
+    directionalLeftLight: "#ffffff",
     directionalTopLight: "#ffffff",
     pointLight: "#ffffff",
     autoRotate: true,
     autoRotateSpeed: 0.5,
     ...globeConfig,
   };
-  
+
   return (
     <Canvas scene={scene} camera={new PerspectiveCamera(50, aspect, 180, 1800)}>
       <WebGLRendererConfig />
