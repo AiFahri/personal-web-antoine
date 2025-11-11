@@ -70,3 +70,17 @@ export const testimonialsQuery = `
   }
 }
 `;
+
+export const highlightsQuery = `
+*[_type == "highlight"] | order(order asc, publishedAt desc){
+  _id,
+  title,
+  text,
+  "image": {
+    "url": image.asset->url,
+    "alt": image.alt
+  },
+  ctaLabel,
+  ctaHref
+}
+`;
