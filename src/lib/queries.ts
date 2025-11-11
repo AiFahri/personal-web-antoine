@@ -42,3 +42,31 @@ export const latestPhotosQuery = `
   _id, title, "imageUrl": image.asset->url
 }
 `;
+
+export const servicesQuery = `
+*[_type == "service"] | order(order asc, _createdAt asc){
+  _id,
+  title,
+  summary,
+  "slug": slug.current,
+  "image": {
+    "url": image.asset->url,
+    "alt": image.alt
+  },
+  "imageNext": imageNext.asset->url,
+  ctaLabel
+}
+`;
+
+export const testimonialsQuery = `
+*[_type == "testimonial"] | order(order asc, _createdAt asc){
+  _id,
+  quote,
+  name,
+  role,
+  "avatar": {
+    "url": avatar.asset->url,
+    "alt": avatar.alt
+  }
+}
+`;
