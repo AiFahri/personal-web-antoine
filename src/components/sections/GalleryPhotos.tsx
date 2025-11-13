@@ -1,8 +1,7 @@
 import Image from "next/image";
-import Carousel from "@/components/carousel/Carousel";
-import PhotoCard from "@/components/photos/PhotoCard";
 import { sanity } from "@/lib/sanity";
 import { latestPhotosQuery } from "@/lib/queries";
+import GalleryPhotosClient from "./GalleryPhotosClient";
 
 export const revalidate = 60;
 
@@ -17,7 +16,7 @@ type GalleryPhotosProps = {
 export default async function GalleryPhotos({
   title = "Experience Leadership Through Photos",
   eyebrow,
-  subtitle = "Browse photos from Antoine’s international speaking and collaboration across universities and events.",
+  subtitle = "Browse photos from Antoine's international speaking and collaboration across universities and events.",
   cta = { label: "View More", href: "/gallery" },
   limit = 12,
 }: GalleryPhotosProps) {
@@ -43,7 +42,7 @@ export default async function GalleryPhotos({
                 style={{ aspectRatio: "10/12" }}
               >
                 <Image
-                  src="/images/antoine.png"
+                  src="/images/antoine-portrait2.webp"
                   alt="Antoine portrait"
                   fill
                   className="object-cover"
@@ -54,67 +53,7 @@ export default async function GalleryPhotos({
           </div>
 
           <div className="col-span-12 md:col-span-7 lg:col-span-8 order-2">
-            <div className="flex items-start justify-between gap-4 mb-4 md:mb-6">
-              <p className="text-base md:text-4xl font-medium text-black/80 font-[SpaceGroteskRegular]">
-                {subtitle.split(" ").slice(0, -8).join(" ")}{" "}
-                <span className="text-black/60">
-                  {subtitle.split(" ").slice(-8).join(" ")}
-                </span>
-              </p>
-              <div className="hidden md:flex items-center gap-3">
-                <a
-                  href={cta.href}
-                  className="inline-flex items-center gap-2 rounded-full px-5 py-2.5 bg-[#C44829] text-white hover:bg-[#B03E25] focus-visible:ring-2"
-                >
-                  {cta.label}
-                  <svg
-                    className="w-4 h-4"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M7 17L17 7M17 7H7M17 7V17"
-                    />
-                  </svg>
-                </a>
-              </div>
-            </div>
-
-            <Carousel>
-              {items.map((it: any) => (
-                <PhotoCard
-                  key={it._id}
-                  title={it.title}
-                  imageUrl={it.imageUrl}
-                />
-              ))}
-            </Carousel>
-
-            <div className="md:hidden mt-4">
-              <a
-                href={cta.href}
-                className="inline-flex items-center gap-2 rounded-full px-5 py-2.5 bg-[#C44829] text-white hover:bg-[#B03E25] focus-visible:ring-2"
-              >
-                {cta.label}
-                <svg
-                  className="w-4 h-4"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M7 17L17 7M17 7H7M17 7V17"
-                  />
-                </svg>
-              </a>
-            </div>
+            <GalleryPhotosClient items={items} subtitle={subtitle} cta={cta} />
           </div>
         </div>
       </div>
