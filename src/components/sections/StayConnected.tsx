@@ -2,6 +2,7 @@ import { sanity } from "@/lib/sanity";
 import { latestPostsQuery } from "@/lib/queries";
 import PostCard from "@/components/blog/PostCard";
 import Carousel from "@/components/carousel/Carousel";
+import SubscribeForm from "../ui/SubscribeForm";
 
 export const revalidate = 60;
 
@@ -45,8 +46,9 @@ export default async function StayConnected({
           <p className="text-2xl md:max-w-lg text-muted-foreground text-black font-[SpaceGroteskMedium]">
             {subtitle}
           </p>
+          <SubscribeForm />
         </div>
-        <div className="relative bg-white rounded-[28px] border border-black/5 shadow-sm p-1 md:p-4">
+        <div className="relative bg-white rounded-[28px] border border-black/5 shadow-sm p-0 md:p-4 overflow-hidden">
           <Carousel>
             {posts.map((post: any, idx: number) => {
               const isExternal =
