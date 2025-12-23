@@ -83,7 +83,7 @@ export default function FeaturedServicesClient({
       onFocus={() => setIsPaused(true)}
       onBlur={() => setIsPaused(false)}
     >
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-12 lg:py-20">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-12 lg:pt-16">
         <div className="grid gap-8 lg:gap-12 grid-cols-1 lg:grid-cols-[minmax(320px,520px)_minmax(520px,1fr)] items-start">
           <div className="order-2 lg:order-1">
             <div className="flex items-center justify-between mb-6">
@@ -96,7 +96,7 @@ export default function FeaturedServicesClient({
                     onClick={prev}
                     aria-label="Previous service"
                     aria-controls="featured-services-carousel"
-                    className="w-10 h-10 rounded-full border border-black/10 bg-white text-black flex items-center justify-center transition hover:bg-black/5 focus-visible:ring-2 focus-visible:ring-offset-2"
+                    className="w-11 h-11 rounded-full border border-black font-bold bg-white text-black flex items-center justify-center transition hover:bg-black/5 focus-visible:ring-2 focus-visible:ring-offset-2"
                   >
                     <span aria-hidden="true">‹</span>
                   </button>
@@ -104,7 +104,7 @@ export default function FeaturedServicesClient({
                     onClick={next}
                     aria-label="Next service"
                     aria-controls="featured-services-carousel"
-                    className="w-10 h-10 rounded-full bg-black text-white flex items-center justify-center transition hover:bg-black/80 focus-visible:ring-2 focus-visible:ring-offset-2"
+                    className="w-11 h-11 rounded-full font-bold bg-black text-white flex items-center justify-center transition hover:bg-black/80 focus-visible:ring-2 focus-visible:ring-offset-2"
                   >
                     <span aria-hidden="true">›</span>
                   </button>
@@ -117,7 +117,7 @@ export default function FeaturedServicesClient({
               role="group"
               aria-roledescription="slide"
               aria-label={`Service ${currentIndex + 1} of ${total}`}
-              className="rounded-3xl bg-white shadow-sm border border-black/5 p-6 md:p-8 font-[SatoshiRegular] text-xl"
+              className="rounded-3xl bg-white shadow-sm border border-black/5 p-6 md:p-8 font-[SatoshiRegular] text-lg md:text-xl"
             >
               {total > 1 && (
                 <div className="relative h-[4px] rounded-full bg-neutral-200/80 flex gap-1 mb-5">
@@ -165,10 +165,14 @@ export default function FeaturedServicesClient({
                   {currentItem.slug && (
                     <Link
                       href={currentItem.slug}
-                      className="mt-4 inline-flex items-center gap-2 rounded-full bg-[#E45B39] text-white px-5 py-2.5 text-sm md:text-base hover:opacity-90 active:scale-[0.98] transition-all focus-visible:ring-2 focus-visible:ring-offset-2"
+                      className="mt-4 inline-flex items-center gap-2 rounded-full bg-[#C44829] hover:bg-[#B03E25] text-white px-5 py-1.5 font-[PlusJakarta] text-sm md:text-base hover:opacity-90 active:scale-[0.98] transition-all focus-visible:ring-2 focus-visible:ring-offset-2 hover:scale-105"
                     >
                       {currentItem.ctaLabel || "Read More"}
-                      <span aria-hidden="true">→</span>
+                      <div className="w-10 h-10 bg-white rounded-full flex items-center justify-center">
+                        <svg className="w-6 h-6" fill="none" stroke="#C44829" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M7 17L17 7M17 7H7M17 7V17" />
+                        </svg>
+                      </div>
                     </Link>
                   )}
                 </motion.div>

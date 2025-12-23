@@ -14,9 +14,9 @@ type GalleryPhotosProps = {
 };
 
 export default async function GalleryPhotos({
-  title = "Experience Leadership Through Photos",
+  title = "Explore Global Leadership Through Photos",
   eyebrow,
-  subtitle = "Browse photos from Antoine's international speaking and collaboration across universities and events.",
+  subtitle = "View Antoine’s international meetings with leaders across universities, forums, and events.",
   cta = { label: "View More", href: "/gallery" },
   limit = 12,
 }: GalleryPhotosProps) {
