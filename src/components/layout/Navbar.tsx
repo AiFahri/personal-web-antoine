@@ -1,35 +1,56 @@
-import CardNav from './CardNav'
+import CardNav from "./CardNav";
 
 const Navbar = () => {
   const items = [
     {
-      label: "About",
+      label: "About & Services",
       bgColor: "#0D0716",
       textColor: "#fff",
       links: [
-        { label: "Company", ariaLabel: "About Company", href: "/about" },
-        { label: "Careers", ariaLabel: "About Careers", href: "/about" }
-      ]
+        {
+          label: "About Antoine",
+          ariaLabel: "About Antoine Battle",
+          href: "https://www.nafsa.org/people/antoine-battle",
+        },
+        {
+          label: "Speaking",
+          ariaLabel: "Book Speaking Engagement",
+          href: "/speaking",
+        },
+        {
+          label: "Consulting & Advisory",
+          ariaLabel: "Hire as Consultant",
+          href: "/consulting",
+        },
+      ],
     },
     {
-      label: "Projects", 
+      label: "Content",
       bgColor: "#170D27",
       textColor: "#fff",
       links: [
-        { label: "Featured", ariaLabel: "Featured Projects", href: "/projects" },
-        { label: "Case Studies", ariaLabel: "Project Case Studies", href: "/projects" }
-      ]
+        { label: "Podcast", ariaLabel: "Listen to Podcast", href: "/podcast" },
+        { label: "Blog", ariaLabel: "Read Articles", href: "/blog" },
+        {
+          label: "Resources",
+          ariaLabel: "Download Resources",
+          href: "/resources",
+        },
+      ],
     },
     {
-      label: "Contact",
-      bgColor: "#271E37", 
+      label: "Media & Contact",
+      bgColor: "#271E37",
       textColor: "#fff",
       links: [
-        { label: "Email", ariaLabel: "Email us", href: "/contact" },
-        { label: "Twitter", ariaLabel: "Twitter", href: "/contact" },
-        { label: "LinkedIn", ariaLabel: "LinkedIn", href: "/contact" }
-      ]
-    }
+        {
+          label: "Media & Gallery",
+          ariaLabel: "View Photos & Videos",
+          href: "/media",
+        },
+        { label: "Contact", ariaLabel: "Get in Touch", href: "/contact" },
+      ],
+    },
   ];
 
   return (
