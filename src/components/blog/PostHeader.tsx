@@ -23,7 +23,7 @@ export default function PostHeader({
         </time>
       </div>
 
-      <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-gray-900 mb-6 md:mb-8 font-[SpaceGroteskBold] text-white">
+      <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-gray-900 mb-6 md:mb-8 font-[SpaceGroteskBold] text-black">
         {title}
       </h1>
 

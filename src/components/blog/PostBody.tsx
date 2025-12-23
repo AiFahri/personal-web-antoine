@@ -11,7 +11,7 @@ export default function PostBody({ contentType, contentPlain, contentRich }: Pos
   if (contentType === "plain" && contentPlain) {
     return (
       <div className="prose prose-lg max-w-none">
-        <div className="whitespace-pre-wrap leading-relaxed text-gray-900">
+        <div className="whitespace-pre-wrap leading-relaxed text-black">
           {contentPlain}
         </div>
       </div>
@@ -20,7 +20,7 @@ export default function PostBody({ contentType, contentPlain, contentRich }: Pos
 
   if (contentType === "rich" && contentRich) {
     return (
-      <div className="prose prose-lg max-w-none">
+      <div className="prose prose-lg max-w-none text-black font-[SatoshiRegular]">
         <PortableText value={contentRich} />
       </div>
     );
