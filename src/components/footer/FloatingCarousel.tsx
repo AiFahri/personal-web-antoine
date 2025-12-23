@@ -1,8 +1,8 @@
 "use client";
 import { useState, useEffect, useCallback } from "react";
 import Image from "next/image";
-import Link from "next/link";
 import { motion, AnimatePresence } from "motion/react";
+import { useComingSoon } from "@/components/ui/ComingSoonContext";
 
 export type HighlightSlide = {
   _id: string;
@@ -18,11 +18,35 @@ type FloatingCarouselProps = {
   pauseOnHover?: boolean;
 };
 
+const AVAILABLE_ROUTES = [
+  '/',
+  '/blog',
+];
+
+function isRouteAvailable(href: string): boolean {
+  if (href.startsWith('http://') || href.startsWith('https://')) {
+    return true;
+  }
+
+  const normalizedHref = href.split('?')[0].split('#')[0]; // Remove query params and hash
+  
+  if (AVAILABLE_ROUTES.includes(normalizedHref)) {
+    return true;
+  }
+
+  if (AVAILABLE_ROUTES.some(route => normalizedHref.startsWith(route + '/'))) {
+    return true;
+  }
+
+  return false;
+}
+
 export default function FloatingCarousel({
   items,
   intervalMs = 3000,
   pauseOnHover = true,
 }: FloatingCarouselProps) {
+  const { show } = useComingSoon();
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isPaused, setIsPaused] = useState(false);
   const total = items.length;
@@ -115,17 +139,27 @@ export default function FloatingCarousel({
                 <p className="mt-2 text-sm sm:text-base md:text-lg text-neutral-700 leading-relaxed font-[SpaceGroteskRegular]">
                   {currentItem.text}
                 </p>
-                {currentItem.cta && (
-                  <Link
-                    href={currentItem.cta.href}
-                    className="mt-3 sm:mt-4 inline-flex items-center gap-2 rounded-full bg-[#E1462B] text-white px-4 py-2 sm:px-5 sm:py-2.5 text-sm sm:text-base hover:opacity-90 transition-opacity focus-visible:ring-2 focus-visible:ring-offset-2"
-                  >
-                    {currentItem.cta.label}
-                    <span aria-hidden="true" className="text-base sm:text-lg">
-                      →
-                    </span>
-                  </Link>
-                )}
+                {currentItem.cta && (() => {
+                  const handleClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
+                    if (!isRouteAvailable(currentItem.cta!.href)) {
+                      e.preventDefault();
+                      show(currentItem.cta!.href);
+                    }
+                  };
+
+                  return (
+                    <a
+                      href={isRouteAvailable(currentItem.cta!.href) ? currentItem.cta!.href : '#'}
+                      onClick={handleClick}
+                      className="mt-3 sm:mt-4 inline-flex items-center gap-2 rounded-full bg-[#E1462B] text-white px-4 py-2 sm:px-5 sm:py-2.5 text-sm sm:text-base hover:opacity-90 transition-opacity focus-visible:ring-2 focus-visible:ring-offset-2"
+                    >
+                      {currentItem.cta.label}
+                      <span aria-hidden="true" className="text-base sm:text-lg">
+                        →
+                      </span>
+                    </a>
+                  );
+                })()}
               </motion.div>
             </AnimatePresence>
           </div>

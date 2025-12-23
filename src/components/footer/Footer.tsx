@@ -1,8 +1,9 @@
 "use client";
 import { useState, FormEvent } from "react";
-import Link from "next/link";
 import FloatingCarousel from "./FloatingCarousel";
 import type { HighlightSlide } from "./FloatingCarousel";
+import { useComingSoon } from "@/components/ui/ComingSoonContext";
+import SubscribeForm from "../ui/SubscribeForm";
 
 type FooterProps = {
   highlights?: HighlightSlide[];
@@ -82,12 +83,40 @@ export default function Footer({ highlights = [] }: FooterProps) {
     },
   ];
 
+  const AVAILABLE_ROUTES = ["/", "/blog"];
+
+  const isRouteAvailable = (href: string): boolean => {
+    if (href.startsWith("http://") || href.startsWith("https://")) {
+      return true;
+    }
+
+    const normalizedHref = href.split("?")[0].split("#")[0]; // Remove query params and hash
+
+    if (AVAILABLE_ROUTES.includes(normalizedHref)) {
+      return true;
+    }
+
+    if (
+      AVAILABLE_ROUTES.some((route) => normalizedHref.startsWith(route + "/"))
+    ) {
+      return true;
+    }
+
+    return false;
+  };
+
+  const { show } = useComingSoon();
+
   const navLinks = [
     { label: "Home", href: "/" },
-    { label: "About", href: "/about" },
-    { label: "Services", href: "/services" },
-    { label: "Media", href: "/media" },
-    { label: "Insights", href: "/insights" },
+    { label: "About Antoine", href: "/about" },
+    { label: "Speaking", href: "/speaking" },
+    { label: "Consulting & Advisory", href: "/consulting" },
+    { label: "Podcast", href: "/podcast" },
+    { label: "Blog", href: "/blog" },
+    { label: "Resources", href: "/resources" },
+    { label: "Media & Gallery", href: "/media" },
+    { label: "Contact", href: "/contact" },
   ];
 
   return (
@@ -127,43 +156,7 @@ export default function Footer({ highlights = [] }: FooterProps) {
                 Subscribe to stay updated with insights, stories, and strategies
                 on international education and leadership.
               </p>
-              <form onSubmit={handleSubmit} className="mt-4">
-                <label htmlFor="footer-email" className="sr-only">
-                  Email
-                </label>
-                <div className="flex items-center gap-2 rounded-full border border-white/20 pl-5 pr-1 py-2.5 bg-white/0 focus-within:border-white/40 transition-colors">
-                  <input
-                    id="footer-email"
-                    type="email"
-                    placeholder="Enter email"
-                    value={email}
-                    onChange={(e) => {
-                      setEmail(e.target.value);
-                      setError("");
-                    }}
-                    className="bg-transparent text-white placeholder-white/50 outline-none flex-1 text-sm font-[SpaceGroteskRegular]"
-                    aria-invalid={error ? "true" : "false"}
-                    aria-describedby={error ? "email-error" : undefined}
-                  />
-                  <button
-                    type="submit"
-                    disabled={isSubmitting}
-                    className="w-10 h-10 rounded-full bg-[#E1462B] grid place-items-center hover:opacity-90 transition-opacity disabled:opacity-50 focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-black font-[SpaceGroteskRegular]"
-                    aria-label="Subscribe to newsletter"
-                  >
-                    <span aria-hidden="true">→</span>
-                  </button>
-                </div>
-                {error && (
-                  <p
-                    id="email-error"
-                    className="mt-2 text-xs text-red-400"
-                    role="alert"
-                  >
-                    {error}
-                  </p>
-                )}
-              </form>
+              <SubscribeForm />
             </div>
           </div>
 
@@ -171,16 +164,25 @@ export default function Footer({ highlights = [] }: FooterProps) {
             className="mt-12 md:mt-14 flex flex-wrap justify-center gap-x-12 gap-y-3"
             aria-label="Footer navigation"
           >
-            {navLinks.map((link) => (
-              <Link
-                key={link.href}
-                href={link.href}
-                prefetch={false}
-                className="text-white/80 hover:text-white transition-colors focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-black rounded font-[SpaceGroteskRegular]"
-              >
-                {link.label}
-              </Link>
-            ))}
+            {navLinks.map((link) => {
+              const handleClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
+                if (!isRouteAvailable(link.href)) {
+                  e.preventDefault();
+                  show(link.href);
+                }
+              };
+
+              return (
+                <a
+                  key={link.href}
+                  href={isRouteAvailable(link.href) ? link.href : "#"}
+                  onClick={handleClick}
+                  className="text-white/80 hover:text-white transition-colors focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-black rounded font-[SpaceGroteskRegular]"
+                >
+                  {link.label}
+                </a>
+              );
+            })}
           </nav>
 
           <div className="mt-10 md:mt-12 text-xs text-white/60 text-center font-[SpaceGroteskRegular]">
