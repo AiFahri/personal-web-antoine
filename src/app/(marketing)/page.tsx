@@ -15,7 +15,13 @@ export default function MarketingPage() {
         titleLines={["I'M ANTOINE", "BATTLE"]}
         subtitle="Antoine Battle — Advancing Global Education Across Borders"
         portraitSrc="/images/Antoine Battle.webp"
-        ctas={[{ label: "More about me", href: "/about", variant: "primary" }]}
+        ctas={[
+          {
+            label: "More about me",
+            href: "https://www.nafsa.org/people/antoine-battle",
+            variant: "primary",
+          },
+        ]}
         socials={[
           {
             label: "linkedin",
