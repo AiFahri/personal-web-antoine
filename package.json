@@ -17,6 +17,7 @@
     "@sanity/vision": "^4.12.0",
     "clsx": "^2.1.1",
     "embla-carousel-react": "^8.6.0",
+    "formik": "^2.4.9",
     "groq": "^4.12.0",
     "gsap": "^3.13.0",
     "motion": "^12.23.24",
@@ -28,7 +29,8 @@
     "sanity": "^4.12.0",
     "tailwind-merge": "^3.3.1",
     "three": "^0.180.0",
-    "three-globe": "^2.44.0"
+    "three-globe": "^2.44.0",
+    "yup": "^1.7.1"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",
