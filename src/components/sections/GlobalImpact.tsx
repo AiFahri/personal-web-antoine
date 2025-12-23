@@ -18,10 +18,10 @@ const GlobeCanvas = dynamic(() => import("@/components/globe/GlobeCanvas"), {
   loading: () => (
     <div className="relative w-full aspect-square max-w-[360px] md:max-w-[540px] lg:max-w-[640px] mx-auto bg-[#0B0B0B] rounded-full flex items-center justify-center">
       <Image
-        src="/images/globe-placeholder.png"
+        src="/images/globe-placeholder.webp"
         alt="Globe loading"
-        width={200}
-        height={200}
+        width={800}
+        height={800}
         className="opacity-50"
         unoptimized
         loading="lazy"
@@ -70,7 +70,7 @@ export default function GlobalImpact({
 
   return (
     <section className="relative bg-[#FAF8F6]">
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-12 lg:py-20">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 pt-12 lg:pt-20">
         <div className="grid items-center gap-8 lg:gap-12 grid-cols-1 md:grid-cols-2 lg:grid-cols-[minmax(220px,0.9fr)_minmax(520px,1fr)_minmax(220px,0.9fr)]">
           <div className="order-1 md:order-1 lg:order-1">
             <StatCard
@@ -97,8 +97,8 @@ export default function GlobalImpact({
             />
           </div>
         </div>
-
-        <div className="mt-10 lg:mt-14" aria-hidden="true">
+      </div>
+      <div className="mt-10 pb-12" aria-hidden="true">
           <div className="relative overflow-hidden">
             <ScrollVelocity
               texts={['Canada * Indonesia * Malaysia * Singapore * Thailand * India * Latvia *']}
@@ -109,8 +109,6 @@ export default function GlobalImpact({
             />
           </div>
         </div>
-      </div>
-
       <div className="pointer-events-none absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-[#FAF8F6] to-transparent" />
     </section>
   );

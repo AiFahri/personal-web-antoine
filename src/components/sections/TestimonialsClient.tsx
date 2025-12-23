@@ -75,7 +75,7 @@ export default function TestimonialsClient({
       onFocus={() => setIsPaused(true)}
       onBlur={() => setIsPaused(false)}
     >
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-12 lg:py-20">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-12 lg:pb-16">
         <div className="grid gap-10 lg:gap-16 lg:grid-cols-2 items-start">
           <div>
             <h2 className="text-3xl md:text-5xl font-[SpaceGroteskMedium] text-black tracking-tight">
@@ -93,7 +93,7 @@ export default function TestimonialsClient({
               role="group"
               aria-roledescription="slide"
               aria-label={`Testimonial ${currentIndex + 1} of ${total}`}
-              className="p-6 md:p-8 font-[SatoshiRegular] text-xl"
+              className="p-6 md:p-8 font-[SatoshiRegular] text-lg md:text-xl"
             >
               <AnimatePresence mode="wait">
                 <motion.div

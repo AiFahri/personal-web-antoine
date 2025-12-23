@@ -57,19 +57,16 @@ export default function StatCard({
   }, [isInView, number, motionValue, prefersReducedMotion]);
 
   return (
-    <div
-      ref={ref}
-      className={`p-6 md:p-8 ${className}`}
-    >
+    <div ref={ref} className={`p-6 md:p-8 ${className}`}>
       <h3 className="sr-only  ">
         Statistic: {number}
         {suffix} {description}
       </h3>
-      <div className="text-5xl md:text-6xl lg:text-7xl font-[SpaceGroteskMedium] leading-none text-[#C44829] flex ">
+      <div className="text-center text-7xl md:text-7xl lg:text-8xl font-[SpaceGroteskMedium] leading-none text-[#C44829] ">
         <CountUpDisplay value={displayNumber} />
         {suffix}
       </div>
-      <p className="mt-4 text-md md:text-xl text-neutral-700 font-[SpaceGroteskRegular] [text-wrap:balance]">
+      <p className="mt-4 text-xl md:text-2xl text-neutral-700 font-[SpaceGroteskRegular] [text-wrap:balance] text-center">
         {description}
       </p>
     </div>
