@@ -14,7 +14,7 @@
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0a0a0a;
+    --background: #F7F6F2;
     --foreground: #ededed;
   }
 }
@@ -23,4 +23,83 @@ body {
   background: var(--background);
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
+}
+
+/* === FONT FACE === */
+
+@font-face {
+  font-family: 'SpaceGroteskRegular';
+  src: url('/fonts/SpaceGrotesk-Regular.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'SpaceGroteskBold';
+  src: url('/fonts/SpaceGrotesk-Bold.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'SpaceGroteskSemiBold';
+  src: url('/fonts/SpaceGrotesk-SemiBold.ttf') format('truetype');
+}
+@font-face {
+  font-family: 'SpaceGroteskLight';
+  src: url('/fonts/SpaceGrotesk-Light.ttf') format('truetype');
+}
+@font-face {
+  font-family: 'SpaceGroteskMedium';
+  src: url('/fonts/SpaceGrotesk-Medium.ttf') format('truetype');
+}
+@font-face {
+  font-family: 'SatoshiRegular';
+  src: url('/fonts/Satoshi-Regular.otf') format('opentype');
+}
+@font-face {
+  font-family: 'SatoshiMedium';
+  src: url('/fonts/Satoshi-Medium.otf') format('opentype');
+}
+@font-face {
+  font-family: 'SatoshiBold';
+  src: url('/fonts/Satoshi-Bold.otf') format('opentype');
+}
+@font-face {
+  font-family: 'SatoshiBlack';
+  src: url('/fonts/Satoshi-Black.otf') format('opentype');
+}
+@font-face {
+  font-family: 'PlusJakarta';
+  src: url('/fonts/Plus-jakarta.ttf') format('truetype');
+}
+
+/* === FONT CLASSES === */
+.font_grotesk_medium {
+  font-family: SpaceGroteskRegular;
+}
+
+.font_grotesk_bold {
+  font-family: SpaceGroteskBold;
+}
+
+.font_grotesk_semibold {
+  font-family: SpaceGroteskSemiBold;
+}
+.font_grotesk_light {
+  font-family: SpaceGroteskLight;
+}
+.font_grotesk_medium {
+  font-family: SpaceGroteskMedium;
+}
+.font_satoshi_regular {
+  font-family: SatoshiRegular;
+}
+.font_satoshi_medium {
+  font-family: SatoshiMedium;
+}
+.font_satoshi_bold {
+  font-family: SatoshiBold;
+}
+.font_satoshi_black {
+  font-family: SatoshiBlack;
+}
+.font_plus_jakarta {
+  font-family: PlusJakarta;
 }

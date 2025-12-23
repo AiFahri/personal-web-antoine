@@ -1,10 +1,12 @@
-import { World } from "../components/ui/globe";
-import { sampleData } from "../data/sample-data";
+import { World } from "../../components/ui/globe";
+import { sampleData } from "../../data/sample-data";
+import ScrollVelocity from '../../components/ui/scrollText';
+// import { velocity } from '../components/ui/scrollText';
 
-export default function Home() {
+export default function tesGlobe() {
   const globeConfig = {
     pointSize: 4,
-    globeColor: "#062056",
+    globeColor: "#CC411E",
     showAtmosphere: true,
     atmosphereColor: "#FFFFFF",
     atmosphereAltitude: 0.1,
@@ -29,8 +31,13 @@ export default function Home() {
     <div className="font-sans grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20">
       <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
         <h1 className="font-bold text-4xl">Welcome to Website Antoine Battle</h1>
-        <div className="w-full h-[600px]">
+        <div className="w-screen h-[600px]">
           <World globeConfig={globeConfig} data={sampleData} />
+          <ScrollVelocity
+            texts={['Canada * Indonesia * Malaysia * Singapore * Thailand *']} 
+            // velocity={velocity} 
+            className="custom-scroll-text"
+          />
         </div>
       </main>
       <footer className="row-start-3 text-sm text-gray-500">
