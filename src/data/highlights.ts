@@ -9,8 +9,8 @@ export const highlightAData = {
   cta: { label: "Book Antoine Now", href: "/contact" },
   carousel: [
     { src: "/images/antoine 1.png", alt: "Antoine with delegates" },
-    { src: "/images/antoine2.png", alt: "Team celebration" },
-    { src: "/images/antoine 3.png", alt: "Panel discussion" }
+    { src: "/images/antoine 2.jpg", alt: "Antoine speaking at event" },
+    { src: "/images/antoine 3.jpeg", alt: "Antoine receiving award" }
   ]
 };
 
