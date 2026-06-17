@@ -1,38 +1,58 @@
-import { useEffect } from "react";
+import { useEffect, useCallback, useRef } from "react";
+import type { EmblaCarouselType } from "embla-carousel";
 
-export function useAutoplay(embla: any, delay = 7000) {
+export function useAutoplay(
+  emblaApi: EmblaCarouselType | undefined,
+  delay: number = 5000
+) {
+  const autoplayRef = useRef<NodeJS.Timeout | null>(null);
+  const isPlayingRef = useRef(true);
+
+  const play = useCallback(() => {
+    if (!emblaApi) return;
+    
+    if (autoplayRef.current) {
+      clearInterval(autoplayRef.current);
+    }
+
+    autoplayRef.current = setInterval(() => {
+      if (isPlayingRef.current && emblaApi.canScrollNext()) {
+        emblaApi.scrollNext();
+      } else if (isPlayingRef.current && !emblaApi.canScrollNext()) {
+        // Reached end, scroll back to start
+        emblaApi.scrollTo(0);
+      }
+    }, delay);
+  }, [emblaApi, delay]);
+
+  const stop = useCallback(() => {
+    if (autoplayRef.current) {
+      clearInterval(autoplayRef.current);
+      autoplayRef.current = null;
+    }
+  }, []);
+
+  const onPointerDown = useCallback(() => {
+    isPlayingRef.current = false;
+    stop();
+  }, [stop]);
+
+  const onPointerUp = useCallback(() => {
+    isPlayingRef.current = true;
+    play();
+  }, [play]);
+
   useEffect(() => {
-    if (!embla) return;
-    let stopped = false,
-      timer: any;
-    const node = embla.rootNode ? embla.rootNode() : null;
-    if (!node) return;
+    if (!emblaApi) return;
 
-    function next() {
-      if (!stopped) embla.scrollNext();
-      timer = setTimeout(next, delay);
-    }
-    function stop() {
-      stopped = true;
-      clearTimeout(timer);
-    }
-    function start() {
-      stopped = false;
-      timer = setTimeout(next, delay);
-    }
-
-    node.addEventListener("mouseenter", stop);
-    node.addEventListener("mouseleave", start);
-    node.addEventListener("focusin", stop);
-    node.addEventListener("focusout", start);
-    start();
+    play();
+    emblaApi.on("pointerDown", onPointerDown);
+    emblaApi.on("pointerUp", onPointerUp);
 
     return () => {
       stop();
-      node.removeEventListener("mouseenter", stop);
-      node.removeEventListener("mouseleave", start);
-      node.removeEventListener("focusin", stop);
-      node.removeEventListener("focusout", start);
+      emblaApi.off("pointerDown", onPointerDown);
+      emblaApi.off("pointerUp", onPointerUp);
     };
-  }, [embla, delay]);
+  }, [emblaApi, play, stop, onPointerDown, onPointerUp]);
 }

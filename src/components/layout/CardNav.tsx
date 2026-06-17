@@ -2,6 +2,7 @@
 import React, { useLayoutEffect, useRef, useState, useCallback } from "react";
 import { gsap } from "gsap";
 import { useComingSoon } from "@/components/ui/ComingSoonContext";
+import { useContact } from "@/components/ui/ContactContext";
 
 type CardNavLink = {
   label: string;
@@ -27,6 +28,7 @@ export interface CardNavProps {
 }
 
 const AVAILABLE_ROUTES = ["/", "/blog"];
+const CONTACT_ROUTES = ["/contact"];
 
 function isRouteAvailable(href: string): boolean {
   if (href.startsWith("http://") || href.startsWith("https://")) {
@@ -48,6 +50,11 @@ function isRouteAvailable(href: string): boolean {
   return false;
 }
 
+function isContactRoute(href: string): boolean {
+  const normalizedHref = href.split("?")[0].split("#")[0];
+  return CONTACT_ROUTES.includes(normalizedHref);
+}
+
 const CardNav: React.FC<CardNavProps> = ({
   items,
   className = "",
@@ -58,6 +65,7 @@ const CardNav: React.FC<CardNavProps> = ({
   buttonTextColor,
 }) => {
   const { show } = useComingSoon();
+  const { show: showContact } = useContact();
   const [isHamburgerOpen, setIsHamburgerOpen] = useState(false);
   const [isExpanded, setIsExpanded] = useState(false);
   const navRef = useRef<HTMLDivElement | null>(null);
@@ -118,7 +126,7 @@ const CardNav: React.FC<CardNavProps> = ({
     tl.to(
       cardsRef.current,
       { y: 0, opacity: 1, duration: 0.4, ease, stagger: 0.08 },
-      "-=0.1"
+      "-=0.1",
     );
 
     return tl;
@@ -219,8 +227,10 @@ const CardNav: React.FC<CardNavProps> = ({
           <a
             href="/contact"
             onClick={(e) => {
-              if (!isRouteAvailable("/contact")) {
-                e.preventDefault();
+              e.preventDefault();
+              if (isContactRoute("/contact")) {
+                showContact();
+              } else if (!isRouteAvailable("/contact")) {
                 show("/contact");
               }
             }}
@@ -252,11 +262,16 @@ const CardNav: React.FC<CardNavProps> = ({
               <div className="nav-card-links mt-auto flex flex-col gap-[2px]">
                 {item.links?.map((lnk, i) => {
                   const handleClick = (
-                    e: React.MouseEvent<HTMLAnchorElement>
+                    e: React.MouseEvent<HTMLAnchorElement>,
                   ) => {
-                    if (!isRouteAvailable(lnk.href)) {
-                      e.preventDefault();
+                    e.preventDefault();
+                    if (isContactRoute(lnk.href)) {
+                      showContact();
+                    } else if (!isRouteAvailable(lnk.href)) {
                       show(lnk.href);
+                    } else {
+                      // Navigate to available route
+                      window.location.href = lnk.href;
                     }
                   };
 
