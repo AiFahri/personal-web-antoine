@@ -69,7 +69,7 @@ export default function TestimonialsClient({
   return (
     <section
       className="bg-[#F8F6F2]"
-      aria-label="What others say"
+      aria-label="What Others Are Saying"
       onMouseEnter={() => setIsPaused(true)}
       onMouseLeave={() => setIsPaused(false)}
       onFocus={() => setIsPaused(true)}
@@ -79,7 +79,7 @@ export default function TestimonialsClient({
         <div className="grid gap-10 lg:gap-16 lg:grid-cols-2 items-start">
           <div>
             <h2 className="text-3xl md:text-5xl font-[SpaceGroteskMedium] text-black tracking-tight">
-              What other says
+              What Others Are Saying
             </h2>
             <p className="mt-4 max-w-[46ch] text-neutral-700 leading-relaxed font-[SpaceGroteskRegular] text-2xl md:mt-12">
               Discover what leaders, educators, and partners say about Antoine's

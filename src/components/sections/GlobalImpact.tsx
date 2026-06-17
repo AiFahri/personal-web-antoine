@@ -38,7 +38,7 @@ type GlobalImpactProps = {
 };
 
 export default function GlobalImpact({
-  universitiesCount = 17,
+  universitiesCount = 70,
   countriesCount = 20,
   universitiesDescription = "Universities where Antoine has collaborated, spoken, and advanced global learning initiatives.",
   countriesDescription = "Countries connected through his partnerships, conferences, and academic collaborations.",

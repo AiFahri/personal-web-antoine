@@ -68,13 +68,13 @@ export function HighlightA({
             <div className="col-span-12 md:col-span-2 lg:col-span-3 order-2 md:order-1">
               <motion.div
                 className="relative"
-                initial={{ opacity: 0, x: -30 }}
+              initial={{ opacity: 0, x: -30 }}
                 whileInView={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.6, delay: 0.2 }}
                 viewport={{ once: true }}
               >
                 <Image
-                  src={leftImage}
+                  src="/images/antoine 0.png"
                   alt="Antoine speaking at event"
                   width={300}
                   height={375}

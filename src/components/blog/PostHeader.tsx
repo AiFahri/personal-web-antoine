@@ -27,12 +27,13 @@ export default function PostHeader({
         {title}
       </h1>
 
-      <div className="relative w-full aspect-video md:aspect-[16/10] rounded-2xl overflow-hidden">
+      <div className="w-full rounded-2xl overflow-hidden">
         <Image
           src={cover}
           alt={title}
-          fill
-          className="object-cover"
+          width={1200}
+          height={800}
+          className="w-full h-auto object-contain"
           priority
           sizes="(max-width: 768px) 100vw, (max-width: 1200px) 90vw, 1200px"
         />

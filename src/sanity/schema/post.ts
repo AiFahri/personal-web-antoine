@@ -27,7 +27,27 @@ export const post = {
     {
       name: "contentRich",
       type: "array",
-      of: [{ type: "block" }],
+      of: [
+        { type: "block" },
+        {
+          type: "image",
+          options: { hotspot: true },
+          fields: [
+            {
+              name: "caption",
+              type: "string",
+              title: "Caption",
+              description: "Optional caption to display below the image",
+            },
+            {
+              name: "alt",
+              type: "string",
+              title: "Alt Text",
+              description: "Important for SEO and accessibility",
+            },
+          ],
+        },
+      ],
       hidden: ({ parent }: any) => parent?.contentType !== "rich",
     },
     {

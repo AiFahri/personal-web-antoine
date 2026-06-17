@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { ComingSoonProvider } from "@/components/ui/ComingSoonContext";
+import { ContactProvider } from "@/components/ui/ContactContext";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -15,7 +16,8 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: "Antoine Battle",
-  description: "Antoine Battle is a global education expert and founder of Global Education Alliance. He is dedicated to advancing global education across borders and empowering individuals to achieve their full potential",
+  description:
+    "Antoine Battle is a global education expert and founder of Global Education Alliance. He is dedicated to advancing global education across borders and empowering individuals to achieve their full potential",
   keywords: [
     "Antoine Battle",
     "global education",
@@ -42,7 +44,7 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         <ComingSoonProvider>
-          {children}
+          <ContactProvider>{children}</ContactProvider>
         </ComingSoonProvider>
       </body>
     </html>
