@@ -89,35 +89,43 @@ export default function Hero({
               </motion.span>
             </motion.h1>
 
+           {/* CTA Buttons - Desktop */}
             {ctas.length > 0 && (
               <motion.div
-                className="mt-6"
+                className="mt-3 space-y-4"
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: 0.4 }}
               >
-                <Button
-                  variant="primary"
-                  href={ctas[0].href}
-                  className="inline-flex items-center gap-2"
-                >
-                  {ctas[0].label}
-                  <div className="w-10 h-10 bg-[#C44829] rounded-full flex items-center justify-center">
-                    <svg
-                      className="w-6 h-6"
-                      fill="none"
-                      stroke="currentColor"
-                      viewBox="0 0 24 24"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={2}
-                        d="M7 17L17 7M17 7H7M17 7V17"
-                      />
-                    </svg>
-                  </div>
-                </Button>
+                {ctas.map((cta, idx) => (
+                  <Button
+                    key={idx}
+                    variant={cta.variant || "primary"}
+                    href={cta.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center justify-between gap-3 w-50%"
+                  >
+                    <span className="flex-1 text-left text-base">
+                      {cta.label}
+                    </span>
+                    <div className="w-10 h-10 bg-[#C44829] rounded-full flex items-center justify-center flex-shrink-0">
+                      <svg
+                        className="w-6 h-6"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth={2}
+                          d="M7 17L17 7M17 7H7M17 7V17"
+                        />
+                      </svg>
+                    </div>
+                  </Button>
+                ))}
               </motion.div>
             )}
 
@@ -232,43 +240,43 @@ export default function Hero({
               </motion.span>
             </motion.h1>
 
+            {/* CTA Buttons - Desktop */}
             {ctas.length > 0 && (
               <motion.div
-                className="mt-10"
+                className="mt-10 space-y-4 z-100"
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: 0.4 }}
               >
-                <Button
-                  variant="primary"
-                  href={ctas[0].href}
-                  className="inline-flex items-center gap-2"
-                  target={
-                    ctas[0].href?.startsWith("http") ? "_blank" : undefined
-                  }
-                  rel={
-                    ctas[0].href?.startsWith("http")
-                      ? "noopener noreferrer"
-                      : undefined
-                  }
-                >
-                  {ctas[0].label}
-                  <div className="w-10 h-10 bg-[#C44829] rounded-full flex items-center justify-center">
-                    <svg
-                      className="w-6 h-6"
-                      fill="none"
-                      stroke="currentColor"
-                      viewBox="0 0 24 24"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={2}
-                        d="M7 17L17 7M17 7H7M17 7V17"
-                      />
-                    </svg>
-                  </div>
-                </Button>
+                {ctas.map((cta, idx) => (
+                  <Button
+                    key={idx}
+                    variant={cta.variant || "primary"}
+                    href={cta.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center justify-between gap-3 w-50% z-100"
+                  >
+                    <span className="flex-1 text-left text-base">
+                      {cta.label}
+                    </span>
+                    <div className="w-10 h-10 bg-[#C44829] rounded-full flex items-center justify-center flex-shrink-0">
+                      <svg
+                        className="w-6 h-6"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth={2}
+                          d="M7 17L17 7M17 7H7M17 7V17"
+                        />
+                      </svg>
+                    </div>
+                  </Button>
+                ))}
               </motion.div>
             )}
           </div>
