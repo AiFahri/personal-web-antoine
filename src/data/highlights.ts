@@ -1,16 +1,19 @@
 // content/highlightA.json
 export const highlightAData = {
-  title: "Inspiring Global Action Through Education, Leadership, and Connection",
-  leftImage: "/images/antoine 1.png",
+  title: "Connect Globally. Act Strategically. Build Partnerships. Cultivate Leaders. Achieve Results.",
+  leftImage: "/images/antoine 0.png",
   paragraphs: [
-    "Join me to explore how global education can inspire, connect, and transform future leaders.",
-    "Learning beyond borders means more than travel; it's about action, purpose, and progress across every classroom and community."
+    "Whether you lead an institution, organization, or initiative, I help you turn vision into action and achieve measurable impact.",
+    "Through strategic advisory, partnership development, program design, and coaching, you gain insight, connections, and strategies that drive results."
   ],
   cta: { label: "Book Antoine Now", href: "/contact" },
   carousel: [
-    { src: "/images/antoine 1.png", alt: "Antoine with delegates" },
     { src: "/images/antoine 2.jpg", alt: "Antoine speaking at event" },
-    { src: "/images/antoine 3.jpeg", alt: "Antoine receiving award" }
+    { src: "/images/antoine 3.jpg", alt: "Antoine receiving award" },
+    { src: "/images/antoine 4.jpg", alt: "Antoine receiving award" },
+    { src: "/images/antoine 5.jpg", alt: "Antoine receiving award" },
+    { src: "/images/antoine 6.jpg", alt: "Antoine receiving award" },
+    { src: "/images/antoine 7.jpeg", alt: "Antoine receiving award" }
   ]
 };
 

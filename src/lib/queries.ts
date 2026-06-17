@@ -27,7 +27,27 @@ export const postBySlugQuery = `
   contentRich
 }
 `;
+export const internalLinksQuery = `
+*[_type == "post" && postType == "internal"] | order(publishedAt desc)[0...10]{
+  _id,
+  title,
+  "slug": slug.current,
+  "cover": cover.asset->url,
+  publishedAt,
+  "excerpt": array::join(string::split(coalesce(contentPlain, pt::text(contentRich)), " ")[0...40], " ") + "…"
+}
+`;
 
+export const externalLinksQuery = `
+*[_type == "post" && postType == "external"] | order(publishedAt desc)[0...10]{
+  _id,
+  title,
+  "cover": cover.asset->url,
+  externalUrl,
+  publishedAt,
+  "excerpt": array::join(string::split(coalesce(contentPlain, pt::text(contentRich)), " ")[0...40], " ") + "…"
+}
+`;
 export const latestVideosQuery = `
 *[_type == "videoItem"] | order(publishedAt desc)[0...24]{
   _id, title, posterSecond,
