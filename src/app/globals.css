@@ -103,3 +103,28 @@ body {
 .font_plus_jakarta {
   font-family: PlusJakarta;
 }
+
+.embla {
+  overflow: hidden;
+}
+
+.embla__container {
+  display: flex;
+  will-change: transform;
+  backface-visibility: hidden;
+  transform: translateZ(0);
+}
+
+.embla__slide {
+  flex: 0 0 auto;
+  min-width: 0;
+  will-change: transform;
+  backface-visibility: hidden;
+  transform: translateZ(0);
+}
+
+/* Prevent layout shift during carousel transitions */
+[data-embla-carousel] {
+  transform: translateZ(0);
+  will-change: transform;
+}
