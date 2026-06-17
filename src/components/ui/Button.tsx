@@ -2,8 +2,10 @@
 import React from "react";
 import { cn } from "@/lib/utils";
 import { useComingSoon } from "./ComingSoonContext";
+import { useContact } from "./ContactContext";
 
 const AVAILABLE_ROUTES = ["/", "/blog"];
+const CONTACT_ROUTES = ["/contact"];
 
 function isRouteAvailable(href: string): boolean {
   if (href.startsWith("http://") || href.startsWith("https://")) {
@@ -25,6 +27,11 @@ function isRouteAvailable(href: string): boolean {
   return false;
 }
 
+function isContactRoute(href: string): boolean {
+  const normalizedHref = href.split("?")[0].split("#")[0];
+  return CONTACT_ROUTES.includes(normalizedHref);
+}
+
 interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   variant?: "primary" | "ghost";
   href?: string;
@@ -44,6 +51,7 @@ export default function Button({
   ...props
 }: ButtonProps) {
   const { show } = useComingSoon();
+  const { show: showContact } = useContact();
 
   const baseClasses =
     "inline-flex items-center justify-center px-6 py-3 rounded-full transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-offset-2 hover:scale-105";
@@ -58,9 +66,19 @@ export default function Button({
   const classes = cn(baseClasses, variantClasses[variant], className);
 
   const handleClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
-    if (href && !isRouteAvailable(href)) {
-      e.preventDefault();
-      show(href);
+    if (href) {
+      // Check if it's a contact route
+      if (isContactRoute(href)) {
+        e.preventDefault();
+        showContact();
+        return;
+      }
+
+      // Check if route is not available
+      if (!isRouteAvailable(href)) {
+        e.preventDefault();
+        show(href);
+      }
     }
   };
 
