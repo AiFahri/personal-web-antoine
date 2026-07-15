@@ -1,5 +1,6 @@
 "use client";
 import React, { useLayoutEffect, useRef, useState, useCallback } from "react";
+import Link from "next/link";
 import { gsap } from "gsap";
 import { useComingSoon } from "@/components/ui/ComingSoonContext";
 import { useContact } from "@/components/ui/ContactContext";
@@ -29,6 +30,7 @@ export interface CardNavProps {
 
 const AVAILABLE_ROUTES = ["/", "/blog"];
 const CONTACT_ROUTES = ["/contact"];
+const MOBILE_QUERY = "(max-width: 767px)";
 
 function isRouteAvailable(href: string): boolean {
   if (href.startsWith("http://") || href.startsWith("https://")) {
@@ -76,7 +78,7 @@ const CardNav: React.FC<CardNavProps> = ({
     const navEl = navRef.current;
     if (!navEl) return 260;
 
-    const isMobile = window.matchMedia("(max-width: 768px)").matches;
+    const isMobile = window.matchMedia(MOBILE_QUERY).matches;
     if (isMobile) {
       const contentEl = navEl.querySelector(".card-nav-content") as HTMLElement;
       if (contentEl) {
@@ -169,6 +171,23 @@ const CardNav: React.FC<CardNavProps> = ({
     return () => window.removeEventListener("resize", handleResize);
   }, [isExpanded, createTimeline]);
 
+  useLayoutEffect(() => {
+    if (!isExpanded) return;
+
+    const handleEscape = (event: KeyboardEvent) => {
+      if (event.key === "Escape") {
+        setIsHamburgerOpen(false);
+        tlRef.current?.eventCallback("onReverseComplete", () =>
+          setIsExpanded(false),
+        );
+        tlRef.current?.reverse();
+      }
+    };
+
+    window.addEventListener("keydown", handleEscape);
+    return () => window.removeEventListener("keydown", handleEscape);
+  }, [isExpanded]);
+
   const toggleMenu = () => {
     const tl = tlRef.current;
     if (!tl) return;
@@ -189,7 +208,7 @@ const CardNav: React.FC<CardNavProps> = ({
 
   return (
     <div
-      className={`card-nav-container absolute left-1/2 -translate-x-1/2 w-[90%] max-w-[1600px] z-[99] top-[1.2em] md:top-[2em] ${className}`}
+      className={`card-nav-container absolute left-1/2 top-4 z-[99] w-[calc(100%-2rem)] max-w-[1600px] -translate-x-1/2 sm:top-5 sm:w-[92%] md:top-8 ${className}`}
     >
       <nav
         ref={navRef}
@@ -200,8 +219,16 @@ const CardNav: React.FC<CardNavProps> = ({
           <div
             className={`hamburger-menu ${isHamburgerOpen ? "open" : ""} group h-full flex flex-col items-center justify-center cursor-pointer gap-[6px] order-2 md:order-none`}
             onClick={toggleMenu}
+            onKeyDown={(event) => {
+              if (event.key === "Enter" || event.key === " ") {
+                event.preventDefault();
+                toggleMenu();
+              }
+            }}
             role="button"
             aria-label={isExpanded ? "Close menu" : "Open menu"}
+            aria-expanded={isExpanded}
+            aria-controls="primary-card-navigation"
             tabIndex={0}
             style={{ color: menuColor || "#000" }}
           >
@@ -217,12 +244,14 @@ const CardNav: React.FC<CardNavProps> = ({
             />
           </div>
 
-          <a
-            href="#"
-            className="logo-container flex items-center md:absolute md:left-1/2 md:top-1/2 md:-translate-x-1/2 md:-translate-y-1/2 order-1 md:order-none font-[SpaceGroteskMedium] cursor-pointer hover:opacity-80 transition-opacity"
+          <Link
+            href="/"
+            className="logo-container order-1 flex min-w-0 items-center font-[SpaceGroteskMedium] transition-opacity hover:opacity-80 md:absolute md:left-1/2 md:top-1/2 md:order-none md:-translate-x-1/2 md:-translate-y-1/2"
           >
-            <h2 className="text-2xl text-black">ANTOINE BATTLE</h2>
-          </a>
+            <span className="truncate text-[clamp(1rem,5vw,1.5rem)] leading-none text-black">
+              ANTOINE BATTLE
+            </span>
+          </Link>
 
           <a
             href="/contact"
@@ -234,7 +263,7 @@ const CardNav: React.FC<CardNavProps> = ({
                 show("/contact");
               }
             }}
-            className="card-nav-cta-button hidden md:inline-flex justify-center items-center border-0 rounded-[calc(0.75rem-0.2rem)] px-8 h-full font-[SpaceGroteskBold] cursor-pointer transition-colors duration-300 no-underline"
+            className="card-nav-cta-button hidden h-full items-center justify-center rounded-[calc(0.75rem-0.2rem)] border-0 px-5 font-[SpaceGroteskBold] text-sm no-underline transition-colors duration-300 md:inline-flex lg:px-8 lg:text-base"
             style={{ backgroundColor: buttonBgColor, color: buttonTextColor }}
           >
             Contact Me
@@ -242,6 +271,7 @@ const CardNav: React.FC<CardNavProps> = ({
         </div>
 
         <div
+          id="primary-card-navigation"
           className={`card-nav-content absolute left-0 right-0 top-[60px] bottom-0 p-2 flex flex-col items-stretch gap-2 justify-start z-[1] ${
             isExpanded
               ? "visible pointer-events-auto"
@@ -264,14 +294,12 @@ const CardNav: React.FC<CardNavProps> = ({
                   const handleClick = (
                     e: React.MouseEvent<HTMLAnchorElement>,
                   ) => {
-                    e.preventDefault();
                     if (isContactRoute(lnk.href)) {
+                      e.preventDefault();
                       showContact();
                     } else if (!isRouteAvailable(lnk.href)) {
+                      e.preventDefault();
                       show(lnk.href);
-                    } else {
-                      // Navigate to available route
-                      window.location.href = lnk.href;
                     }
                   };
 
