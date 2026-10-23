@@ -36,8 +36,8 @@ export default function InternalBlogSection() {
 
   if (loading) {
     return (
-      <section className="w-full py-16 md:py-24 bg-white">
-        <div className="container mx-auto px-4">
+      <section className="w-full bg-white py-12 sm:py-16 md:py-24">
+        <div className="page-shell">
           <p className="text-center text-gray-500">Loading...</p>
         </div>
       </section>
@@ -47,35 +47,37 @@ export default function InternalBlogSection() {
   if (!posts?.length) return null;
 
   return (
-    <section className="py-16 bg-white">
-      <div className="container mx-auto px-4 md:px-6 lg:px-0">
-        <div className="flex flex-col md:flex-row md:items-center md:justify-between pb-6">
-          <h2 className="font-bold text-3xl md:text-5xl tracking-tight mb-4 text-black md:mb-0 font-[SpaceGroteskBold]">
+    <section className="bg-white py-12 sm:py-16 lg:py-20">
+      <div className="page-shell">
+        <div className="grid items-start gap-5 pb-6 md:grid-cols-2 md:items-end lg:gap-8 xl:grid-cols-[minmax(14rem,0.7fr)_minmax(18rem,1fr)_minmax(22rem,31.25rem)]">
+          <h2 className="font-[SpaceGroteskBold] text-3xl font-bold tracking-tight text-black md:text-5xl">
             View My Blog
           </h2>
-          <p className="text-2xl md:max-w-lg text-muted-foreground text-black font-[SpaceGroteskMedium]">
+          <p className="max-w-2xl font-[SpaceGroteskMedium] text-lg text-black sm:text-xl lg:text-2xl">
             Join Antoine’s newsletter for insights, stories, and strategies on
             international education and leadership.
           </p>
-          <SubscribeForm />
+          <div className="w-full md:col-span-2 xl:col-span-1">
+            <SubscribeForm />
+          </div>
         </div>
 
         {/* Carousel */}
-        <div className="relative bg-white rounded-[28px] border border-black/5 shadow-sm p-0 md:p-4 overflow-hidden">
-        <Carousel navigationPosition="top-right">
-          {posts.map((post, idx) => (
-            <PostCard
-              key={post._id}
-              title={post.title}
-              variant={idx === 0 ? "highlight" : "default"}
-              excerpt={post.excerpt}
-              cover={post.cover}
-              href={`/blog/${post.slug}`}
-              date={post.publishedAt}
-              external={false}
-            />
-          ))}
-        </Carousel>
+        <div className="relative overflow-hidden rounded-[28px] border border-black/5 bg-white p-2 shadow-sm md:p-4">
+          <Carousel navigationPosition="top-right">
+            {posts.map((post, idx) => (
+              <PostCard
+                key={post._id}
+                title={post.title}
+                variant={idx === 0 ? "highlight" : "default"}
+                excerpt={post.excerpt}
+                cover={post.cover}
+                href={`/blog/${post.slug}`}
+                date={post.publishedAt}
+                external={false}
+              />
+            ))}
+          </Carousel>
         </div>
       </div>
     </section>
