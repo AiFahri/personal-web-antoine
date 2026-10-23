@@ -1,12 +1,13 @@
 "use client";
 import React from "react";
 import useEmblaCarousel from "embla-carousel-react";
+import type { EmblaCarouselType } from "embla-carousel";
 import { useAutoplay } from "./useAutoplay";
 
 type CarouselProps = {
-  children: React.ReactNode[];
+  children: React.ReactNode;
   navigationPosition?: "top-right" | "top-left" | "external";
-  onApiReady?: (api: any) => void;
+  onApiReady?: (api: EmblaCarouselType) => void;
   enableAutoplay?: boolean;
 };
 
@@ -88,26 +89,26 @@ export default function Carousel({
 
   return (
     <div className="relative">
+      {navigationPosition === "top-right" && (
+        <div className="mb-3 flex justify-end gap-3 md:absolute md:-top-14 md:right-0 md:z-10 md:mb-0">
+          {navigationButtons}
+        </div>
+      )}
+      {navigationPosition === "top-left" && (
+        <div className="mb-3 flex gap-3 md:absolute md:-top-14 md:left-0 md:z-10 md:mb-0">
+          {navigationButtons}
+        </div>
+      )}
       <div
         ref={emblaRef}
         className="overflow-hidden"
         aria-roledescription="carousel"
         aria-label="Carousel"
       >
-        <div className="flex gap-4 md:gap-8 px-4 md:px-0">
+        <div className="flex gap-4 px-1 sm:px-2 md:gap-6 md:px-0 lg:gap-8">
           {children}
         </div>
       </div>
-      {navigationPosition === "top-right" && (
-        <div className="absolute top-0 right-0 flex gap-3 z-10">
-          {navigationButtons}
-        </div>
-      )}
-      {navigationPosition === "top-left" && (
-        <div className="absolute top-0 left-0 flex gap-3 z-10">
-          {navigationButtons}
-        </div>
-      )}
     </div>
   );
 }

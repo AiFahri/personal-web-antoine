@@ -8,7 +8,7 @@ type PhotoCardProps = {
 
 export default function PhotoCard({ title, imageUrl }: PhotoCardProps) {
   return (
-    <div className="relative w-full overflow-hidden rounded-2xl bg-neutral-100 shadow-sm flex-shrink-0 basis-[72%] md:basis-[42%] lg:basis-[28%] mr-4 md:mr-6">
+    <div className="relative w-full flex-shrink-0 basis-[72%] overflow-hidden rounded-2xl bg-neutral-100 shadow-sm md:basis-[42%] lg:basis-[28%]">
       <div className="relative aspect-[9/16] w-full">
         <Image
           src={imageUrl}

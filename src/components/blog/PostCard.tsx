@@ -22,7 +22,7 @@ export default function PostCard({
   href,
   external,
 }: PostCardProps) {
-  const Wrapper: any = external ? "a" : Link;
+  const Wrapper = external ? "a" : Link;
   const wrapperProps = external
     ? { href, target: "_blank", rel: "noopener noreferrer" }
     : { href };
@@ -30,7 +30,7 @@ export default function PostCard({
   return (
     <Wrapper
       {...wrapperProps}
-      className={`group relative p-5 md:p-6 rounded-3xl w-[calc(100vw-3rem)] md:w-[350px] flex flex-col flex-shrink-0
+      className={`group relative flex basis-[calc(100%-1rem)] shrink-0 grow-0 flex-col rounded-3xl p-5 sm:basis-[350px] md:p-6
         ${
           variant === "highlight"
             ? "bg-[#D5572F] text-white shadow-lg"
