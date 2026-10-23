@@ -18,9 +18,9 @@ export default function MarketingPage() {
         subtitle="Antoine Battle — Advancing Global Engagement and Leadership Development"
         portraitSrc="/images/Antoine Battle.webp"
         ctas={[
-           {
-            label: "U.S. Department of State - Exchange Alumni Feature",
-            href: "https://alumni.state.gov/highlight/unlocking-success-through-career-connections-antoine-battle-story",
+          {
+            label: "THE PIE Movers & Shakers: Antoine Battle Feature",
+            href: "https://thepienews.com/movers/antoine-battle/",
             variant: "primary",
           },
           {
@@ -44,9 +44,9 @@ export default function MarketingPage() {
 
       <HighlightA {...highlightAData} />
       {/* <HighlightB {...highlightBData} /> */}
-      <InternalBlogSection/>
-            {/* <StayConnected /> */}
-      <ExternalLinksSection/>
+      <InternalBlogSection />
+      {/* <StayConnected /> */}
+      <ExternalLinksSection />
       <GlobalImpact />
       <GalleryVideos />
       <GalleryPhotos />
